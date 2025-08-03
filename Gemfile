@@ -31,7 +31,6 @@ group :development, :test do
   # 追加
   gem "annotate"
   gem "factory_bot_rails"
-  gem "faker"
   gem "pry-byebug"
   gem "pry-doc"
   gem "pry-rails"
