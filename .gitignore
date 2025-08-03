@@ -70,3 +70,7 @@ yarn-debug.log*
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# ER図出力ファイル
+*.dot
+*.pdf
