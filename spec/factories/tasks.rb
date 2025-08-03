@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :task do
-    title { "MyString" }
-    description { "MyText" }
-    due_date { "2025-08-03" }
+    title { "Test Task" }
+    description { "Test Description" }
+    due_date { "Date.today" }
     completed { false }
   end
 end
