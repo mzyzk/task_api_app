@@ -56,4 +56,33 @@ RSpec.describe "Api::V1::Tasks", type: :request do
       expect(json["title"]).to include("can't be blank")
     end
   end
+
+  describe "PUT /update" do
+    let(:task) { create(:task, title: "Old Title") }
+
+    it "updates the task with correct structure" do
+      put "/api/v1/tasks/#{task.id}", params: { task: { title: "Updated Title" } }
+
+      expect(response).to have_http_status(:ok)
+      json = JSON.parse(response.body)
+      expect(json["title"]).to eq("Updated Title")
+      expect(json.keys).to contain_exactly("id", "title", "description", "due_date", "completed", "created_at", "updated_at")
+    end
+
+    it "returns 404 if task not found" do
+      put "/api/v1/tasks/9999", params: { task: { title: "Whatever" } }
+
+      expect(response).to have_http_status(:not_found)
+      json = JSON.parse(response.body)
+      expect(json["error"]).to eq("Task not found")
+    end
+
+    it "returns error when title is blank" do
+      put "/api/v1/tasks/#{task.id}", params: { task: { title: "" } }
+
+      expect(response).to have_http_status(:unprocessable_entity)
+      json = JSON.parse(response.body)
+      expect(json["title"]).to include("can't be blank")
+    end
+  end
 end
