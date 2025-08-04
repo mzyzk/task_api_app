@@ -85,4 +85,24 @@ RSpec.describe "Api::V1::Tasks", type: :request do
       expect(json["title"]).to include("can't be blank")
     end
   end
+
+  describe "DELETE /destroy" do
+    let!(:task) { create(:task) }
+    let(:non_existing_id) { Task.maximum(:id).to_i + 1 }
+
+    it "deletes the task" do
+      delete "/api/v1/tasks/#{task.id}"
+
+      expect(response).to have_http_status(:no_content)
+      expect(Task).not_to exist(task.id)
+    end
+
+    it "returns 404 if task not found" do
+      delete "/api/v1/tasks/#{non_existing_id}"
+
+      expect(response).to have_http_status(:not_found)
+      json = JSON.parse(response.body)
+      expect(json["error"]).to eq("Task not found")
+    end
+  end
 end
