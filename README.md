@@ -104,4 +104,5 @@ Tests include:
 
 ## History
 
-- 2025-08-01: Initial implementation complete
+- 2025-08-01: Initial implementation completed (local)
+- 2025-08-05: v1.0 released
