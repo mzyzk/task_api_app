@@ -1,3 +1,5 @@
+This README is available in [English](README.md) and [Japanese](README.ja.md).
+
 # task_api_app
 
 ## Overview
