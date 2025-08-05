@@ -67,3 +67,13 @@ yarn-debug.log*
 /storage/*
 !/storage/.keep
 /public/uploads
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+
+# ER図出力ファイル
+*.dot
+*.pdf
+
+# 個人利用scripts
+/scripts
